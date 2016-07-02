@@ -77,12 +77,12 @@ class S3Volume(object):
             self.logger.info("Restoring to {0}".format(path))
             if not os.path.exists(path):
                 os.makedirs(path)
-                if 'chmod' in backup:
-                    self.logger.info("chmod {0}".format(backup['chmod']))
-                    subprocess.call(['chmod', backup['chmod'], path])
-                if 'chown' in backup:
-                    self.logger.info("chown {0}".format(backup['chown']))
-                    subprocess.call(['chown', backup['chown'], path])
+            if 'chmod' in backup:
+                self.logger.info("chmod {0}".format(backup['chmod']))
+                subprocess.call(['chmod', backup['chmod'], path])
+            if 'chown' in backup:
+                self.logger.info("chown {0}".format(backup['chown']))
+                subprocess.call(['chown', backup['chown'], path])
             backups = sorted(self.bucket.objects.
                              filter(Prefix=backup['prefix']))
             if backups:
